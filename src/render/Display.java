@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
+import gdecid.render.EdgeRender;
+import gdecid.render.LabelRender;
 import gdecid.visual.tuple.TableVisualItem;
 
 public class Display extends JComponent{
