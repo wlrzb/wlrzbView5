@@ -1,16 +1,17 @@
 package gdecid.render;
 
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Shape;
-import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RectangularShape;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
+
 import java.io.IOException;
-import java.net.URL;
+
 
 import javax.imageio.ImageIO;
 import gdecid.visual.tuple.TableVisualItem;
@@ -19,9 +20,14 @@ public class LabelRender {
 	
 	protected int m_imageMargin = 20;  // 图片与文字之间的空隙
 	
+	protected RectangularShape m_bbox  = new Rectangle2D.Double();
 	protected Font  m_font;
+	protected String m_text;
 	
 	private static Image img;
+	
+    public static final Graphics2D DEFAULT_GRAPHICS = (Graphics2D)
+            new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).getGraphics();
 	
 	
 	static {
@@ -38,7 +44,7 @@ public class LabelRender {
 	AffineTransform m_transform = new AffineTransform();
 	
 	public void Render(Graphics2D g, TableVisualItem item) {
-		String text = item.getName();
+		String text = item.getText();
 		double size = item.getSize(); // 获取图片的缩放倍数
 		m_font = item.getFont();      // 获取文字的字体
 		
@@ -59,6 +65,30 @@ public class LabelRender {
         
         g.setFont(m_font);  // 设置画笔的字体
         g.drawString(text, (float)tx, (float)ty);
+	}
+	
+	
+	protected Shape getRawShape(TableVisualItem item) {
+		m_text = item.getText();
+		
+		// 计算图片的尺寸
+		double iw=0, ih=0;
+		ih = img.getHeight(null);
+		iw = img.getWidth(null);
+		
+		// 计算文字的尺寸
+		int tw=0, th=0;
+		m_font = item.getFont();
+		FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
+		th = fm.getHeight();
+		tw = fm.stringWidth(m_text);
+		
+		double w=0, h=0;
+		w = Math.max(iw, tw);
+		h = ih + m_imageMargin + th;
+		
+		m_bbox.setFrame(item.getX(), item.getY(), w, h);
+		return m_bbox;
 	}
 	
 }

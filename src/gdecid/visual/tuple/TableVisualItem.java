@@ -6,21 +6,21 @@ import java.awt.Graphics;
 import gdecid.visual.VisualItem;
 
 public class TableVisualItem implements VisualItem{
-	String name;
+	String text;
 	double x;
 	double y;
 	double size = 1.0; //定义图片的缩放大小。
 	Font font = new Font("黑体", Font.PLAIN, 15);;
 	
-	public TableVisualItem(String name) {
-		this.name = name;
+	public TableVisualItem(String text) {
+		this.text = text;
 	}
 	
-	public String getName() {
-		return name;
+	public String getText() {
+		return text;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setText(String text) {
+		this.text = text;
 	}
 	public double getX() {
 		return x;
