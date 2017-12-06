@@ -2,8 +2,10 @@ package gdecid.render;
 
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
@@ -64,6 +66,7 @@ public class LabelRender {
         
         
         g.setFont(m_font);  // 设置画笔的字体
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g.drawString(text, (float)tx, (float)ty);
 	}
 	
@@ -79,7 +82,8 @@ public class LabelRender {
 		// 计算文字的尺寸
 		int tw=0, th=0;
 		m_font = item.getFont();
-		FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
+		//FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
+		FontMetrics fm = new FontMetrics(m_font) { };
 		th = fm.getHeight();
 		tw = fm.stringWidth(m_text);
 		
