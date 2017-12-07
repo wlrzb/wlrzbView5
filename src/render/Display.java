@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 
 import gdecid.render.EdgeRender;
 import gdecid.render.LabelRender;
+import gdecid.visual.tuple.TableNodeItem;
 import gdecid.visual.tuple.TableVisualItem;
 
 public class Display extends JComponent{
@@ -40,7 +41,7 @@ public class Display extends JComponent{
 		LabelRender labelRender = new LabelRender();
 		Iterator items = ts.getNodes().iterator();
 		for (int i=0; items.hasNext(); i++) {
-			TableVisualItem item = (TableVisualItem)items.next();
+			TableNodeItem item = (TableNodeItem)items.next();
 			labelRender.Render(g2D, item);
 		}
 	}

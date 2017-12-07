@@ -16,6 +16,8 @@ import java.io.IOException;
 
 
 import javax.imageio.ImageIO;
+
+import gdecid.visual.tuple.TableNodeItem;
 import gdecid.visual.tuple.TableVisualItem;
 
 public class LabelRender {
@@ -45,7 +47,7 @@ public class LabelRender {
 	
 	AffineTransform m_transform = new AffineTransform();
 	
-	public void Render(Graphics2D g, TableVisualItem item) {
+	public void Render(Graphics2D g, TableNodeItem item) {
 		String text = item.getText();
 		double size = item.getSize(); // 获取图片的缩放倍数
 		m_font = item.getFont();      // 获取文字的字体
@@ -61,17 +63,19 @@ public class LabelRender {
         
         ty = iy + ih + m_imageMargin;
 
+        // 设置画笔“抗锯齿”
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);  
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+       
         m_transform.setTransform(size, 0, 0, size, ix, iy);
         g.drawImage(img, m_transform, null);
-        
-        
+               
         g.setFont(m_font);  // 设置画笔的字体
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g.drawString(text, (float)tx, (float)ty);
 	}
 	
-	
-	protected Shape getRawShape(TableVisualItem item) {
+	// 获取node的边框尺寸（图片+文字）
+	protected Shape getRawShape(TableNodeItem item) {
 		m_text = item.getText();
 		
 		// 计算图片的尺寸

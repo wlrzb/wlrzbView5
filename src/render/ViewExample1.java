@@ -20,6 +20,7 @@ public class ViewExample1 {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true); // show the window
         
+        // 载入node和edge的原始数据
         TupleSet ts = new TupleSet(); 
         ts.init();
         
