@@ -11,14 +11,12 @@ public class CircleLayout{
 	private double radius = 200; 
 	
 	public void run(TupleSet ts) {
-        
-        List<Object> Nodes = ts.getNodes();
-        
-        int nn = Nodes.size();
+               
+        int nn = ts.getNodesCount();
 		
-		Iterator items = Nodes.iterator();
-        for (int i=0; items.hasNext(); i++) {
-            TableNodeItem it = (TableNodeItem)items.next();
+		Iterator nodes = ts.iterator();
+        for (int i=0; nodes.hasNext(); i++) {
+            Nodes it = (Nodes)nodes.next();
             double angle = (2*Math.PI*i) / nn;
             double x = Math.cos(angle)*radius + 300;
             double y = Math.sin(angle)*radius + 300;
