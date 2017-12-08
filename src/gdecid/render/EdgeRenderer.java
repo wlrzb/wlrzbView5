@@ -12,14 +12,19 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
 
 import javax.swing.JFrame;
+
+import gdecid.visual.tuple.TableEdgeItem;
+import gdecid.visual.tuple.TableNodeItem;
+import gdecid.visual.VisualItem;
 
 import render.Constants;
 import render.GraphicsLib;
 
 
-public class EdgeRender {
+public class EdgeRenderer {
 	
     protected int     m_xAlign1   = Constants.CENTER;
     protected int     m_yAlign1   = Constants.CENTER;
@@ -66,9 +71,15 @@ public class EdgeRender {
 		//g.drawLine(100, 100, (int)s2x, (int)s2y);
 	}
 	
-	protected Shape getRawShape() {
+	protected Shape getRawShape(TableEdgeItem tableEdgeItem, Map<String, Object> Nodes) {
 		Shape shape = null;
 	
+        TableEdgeItem edge = (TableEdgeItem)tableEdgeItem;
+        TableNodeItem item1 = (TableNodeItem) edge.getSourceItem(Nodes);
+        TableNodeItem item2 = (TableNodeItem) edge.getTargetItem(Nodes);
+
+        System.out.println(item1.getBounds().getWidth());
+		
 		m_tmpPoints[0] = getAlignedPoint(item1.getBounds(), m_xAlign1, m_yAlign1);
 		m_tmpPoints[1] = getAlignedPoint(item2.getBounds(), m_xAlign2, m_yAlign2);
 		
@@ -77,7 +88,7 @@ public class EdgeRender {
         start = m_tmpPoints[0];
         end   = m_tmpPoints[1];
 		
-        Rectangle2D dest = item2;
+        TableNodeItem dest = item2;
         int i = GraphicsLib.intersectLineRectangle(start, end, dest.getBounds(), m_isctPoints);
         if ( i > 0 ) end = m_isctPoints[0];
         
@@ -158,6 +169,13 @@ public class EdgeRender {
     	s2x = sx + s2tmpx;
     	s2y = sy - s2tmpy;
     }
+
+	public void Render(Graphics2D g2d, TableEdgeItem tableEdgeItem, Map<String, Object> Nodes) {
+		Shape shape = getRawShape(tableEdgeItem, Nodes);		
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.draw(shape);
+		g2d.fill(m_curArrow);
+	}
 	
 
 }

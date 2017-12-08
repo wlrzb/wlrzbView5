@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 import gdecid.visual.tuple.TableNodeItem;
 import gdecid.visual.tuple.TableVisualItem;
 
-public class LabelRender {
+public class LabelRenderer {
 	
 	protected int m_imageMargin = 20;  // 图片与文字之间的空隙
 	
@@ -36,7 +36,7 @@ public class LabelRender {
 	
 	static {
 		try {
-			img=ImageIO.read(LabelRender.class.getClassLoader().getResourceAsStream("images/ren30.png"));
+			img=ImageIO.read(LabelRenderer.class.getClassLoader().getResourceAsStream("images/ren30.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,6 +62,9 @@ public class LabelRender {
         double ih = size * img.getHeight(null);
         
         ty = iy + ih + m_imageMargin;
+        
+        Shape shape = getRawShape(item);
+        item.setBounds(shape.getBounds2D());
 
         // 设置画笔“抗锯齿”
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);  
@@ -86,8 +89,8 @@ public class LabelRender {
 		// 计算文字的尺寸
 		int tw=0, th=0;
 		m_font = item.getFont();
-		//FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
-		FontMetrics fm = new FontMetrics(m_font) { };
+		FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
+		//FontMetrics fm = new FontMetrics(m_font) { };
 		th = fm.getHeight();
 		tw = fm.stringWidth(m_text);
 		

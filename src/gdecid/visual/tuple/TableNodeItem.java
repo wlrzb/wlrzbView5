@@ -2,13 +2,16 @@ package gdecid.visual.tuple;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 
 public class TableNodeItem extends TableVisualItem{
+	
 	String text;
 	double x;
 	double y;
 	double size = 1.0; //定义图片的缩放大小。
 	Font font = new Font("黑体", Font.PLAIN, 15);;
+	Rectangle2D Bounds;
 	
 	public TableNodeItem(String text) {
 		this.text = text;
@@ -53,6 +56,14 @@ public class TableNodeItem extends TableVisualItem{
 
 	public void setFont(Font font) {
 		this.font = font;
+	}
+
+	public Rectangle2D getBounds() {
+		return Bounds;
+	}
+
+	public void setBounds(Rectangle2D bounds) {
+		Bounds = bounds;
 	}
 
 }

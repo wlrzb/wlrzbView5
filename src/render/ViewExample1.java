@@ -22,7 +22,6 @@ public class ViewExample1 {
         
         // 载入node和edge的原始数据
         TupleSet ts = new TupleSet(); 
-        ts.init();
         
         new CircleLayout().run(ts);;
         d.add(ts);
