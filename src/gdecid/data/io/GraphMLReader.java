@@ -32,6 +32,11 @@ public class GraphMLReader {
 		m_esch.addColumn("对方身份证号", String.class);
 	}
 	
+	protected void LoadData() {
+		m_nodes = m_nsch.instantiate();
+		m_edges = m_esch.instantiate();
+	}
+	
 	
 	
 }
