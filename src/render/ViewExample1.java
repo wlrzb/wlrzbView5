@@ -4,12 +4,20 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
+import gdecid.Visualization;
 import gdecid.action.layout.CircleLayout;
 import gdecid.action.layout.Layout;
+import gdecid.data.Graph;
 
 
 public class ViewExample1 {
 	public static void main(String[] args) {
+		
+		Graph graph = null;
+		
+		Visualization vis = new Visualization();
+		vis.add("graph", graph);
+		
         Display d = new Display();
        // d.setSize(800, 600); // set display size
 		

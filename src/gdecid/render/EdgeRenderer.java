@@ -43,8 +43,8 @@ public class EdgeRenderer {
 	public Rectangle2D item1 =new Rectangle2D.Float(250, 100, 20, 20); 
 	public Rectangle2D item2 =new Rectangle2D.Float(500, 300, 20, 20); 
 	
-    protected int     m_arrowWidth  = 8;
-    protected int     m_arrowHeight = 12;
+    protected int     m_arrowWidth  = 4;
+    protected int     m_arrowHeight = 6;
 	public Shape   m_curArrow;
     public Polygon m_arrowHead   = updateArrowHead(m_arrowWidth, m_arrowHeight);
     protected AffineTransform m_arrowTrans = new AffineTransform();
