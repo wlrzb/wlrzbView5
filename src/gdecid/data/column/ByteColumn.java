@@ -25,6 +25,11 @@ public class ByteColumn {
 		}
 	}
 	
+	private void setString(String val, int row) {
+		m_values[row] = (byte)val;
+		
+	}
+
 	public void setInt(int val, int row) {
 		m_values[row] = (byte)val;
 	}
