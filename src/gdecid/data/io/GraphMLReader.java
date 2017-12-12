@@ -2,6 +2,7 @@ package gdecid.data.io;
 
 import gdecid.data.Graph;
 import gdecid.data.Schema;
+import gdecid.data.Table;
 
 public class GraphMLReader {
 	
@@ -16,7 +17,12 @@ public class GraphMLReader {
 	protected String m_type;
 	protected String m_dflt;
 	
+	private boolean m_directed = false;
+	
 	public void init() {
+		addNodeSchema();
+		addEdgeSchema();
+		LoadData();
 		m_graph = new Graph(m_nodes, m_edges, m_directed);
 	}
 	

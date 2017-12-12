@@ -1,6 +1,6 @@
 package gdecid.data;
 
-import gdecid.data.io.Table;
+import gdecid.data.Table;
 
 public class Schema {
 	private String[] m_names;
@@ -35,7 +35,11 @@ public class Schema {
 		return instantiate(0);
 	}
 	
-	public Table instantiate(int rows) {
+	public Table instantiate(int nrows) {
 		Table t = new Table(nrows, m_size);
+		for (int i=0; i<m_size; ++i) {
+			t.addColumn(m_names[i], m_types[i], m_dflts[i]);
+		}
+		return t;
 	}
 }
