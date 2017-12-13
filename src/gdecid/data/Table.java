@@ -7,6 +7,7 @@ import gdecid.data.column.Column;
 import gdecid.data.column.ColumnFactory;
 import gdecid.data.column.ColumnMetadata;
 import gdecid.data.tuple.AbstractTupleSet;
+import gdecid.data.util.Index;
 import gdecid.data.util.RowManager;
 
 

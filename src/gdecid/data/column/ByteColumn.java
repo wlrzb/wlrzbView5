@@ -2,7 +2,7 @@ package gdecid.data.column;
 
 import java.util.Arrays;
 
-public class ByteColumn {
+public class ByteColumn extends AbstractColumn {
 
 	private byte[] m_values;
 	private int    m_size;

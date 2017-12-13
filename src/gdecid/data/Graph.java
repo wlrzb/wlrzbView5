@@ -42,12 +42,12 @@ public class Graph extends CompositeTupleSet {
 		return null;
 	}
 
-	public Object getNodeTable() {
+	public Table getNodeTable() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Object getEdgeTable() {
+	public Table getEdgeTable() {
 		// TODO Auto-generated method stub
 		return null;
 	}

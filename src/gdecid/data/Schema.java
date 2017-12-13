@@ -42,4 +42,19 @@ public class Schema {
 		}
 		return t;
 	}
+
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Object getDefault(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Class getColumnType(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
