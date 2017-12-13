@@ -19,28 +19,58 @@ public class GraphMLReader {
 	
 	private boolean m_directed = false;
 	
-	public void init() {
+	public Graph init() {
 		addNodeSchema();
 		addEdgeSchema();
-		LoadData();
+		addColumn();
+		loadData();
 		m_graph = new Graph(m_nodes, m_edges, m_directed);
+		return m_graph;
 	}
 	
 	// 创建“Nodes”表结构
 	protected void addNodeSchema() {
-		m_nsch.addColumn("身份证", String.class, null);
-		m_nsch.addColumn("姓名", String.class, null);
+		//m_nsch.addColumn("身份证", String.class, null);
+		m_nsch.addColumn("城市", String.class, null);
 	}
 	
 	// 创建“Edges”表结构
 	protected void addEdgeSchema() {
-		m_esch.addColumn("本人身份证号", String.class);
-		m_esch.addColumn("对方身份证号", String.class);
+		m_esch.addColumn("主城市", String.class);
+		m_esch.addColumn("对手城市", String.class);
 	}
 	
-	protected void LoadData() {
+	// 根据表结构创建数据表
+	protected void addColumn() {
 		m_nodes = m_nsch.instantiate();
 		m_edges = m_esch.instantiate();
+	}
+	
+	// 载入数据
+	protected void loadData() {
+		loadNodesData();
+		loadEdgesData();
+	}
+	
+	protected void loadNodesData() {
+		m_nodes.set(0, "城市", "北京");
+		m_nodes.set(1, "城市", "上海");
+		m_nodes.set(2, "城市", "广州");
+		m_nodes.set(3, "城市", "深圳");
+		m_nodes.set(4, "城市", "香港");
+	}
+	
+	protected void loadEdgesData() {
+		m_edges.set(0, "主城市", "北京");
+		m_edges.set(0, "对方城市", "上海");
+		m_edges.set(1, "主城市", "上海");
+		m_edges.set(1, "对方城市", "广州");
+		m_edges.set(2, "主城市", "广州");
+		m_edges.set(2, "对方城市", "深圳");
+		m_edges.set(3, "主城市", "深圳");
+		m_edges.set(3, "对方城市", "香港");
+		m_edges.set(4, "主城市", "香港");
+		m_edges.set(4, "对方城市", "北京");
 	}
 	
 	

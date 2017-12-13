@@ -8,7 +8,7 @@ import gdecid.data.column.ColumnFactory;
 import gdecid.data.column.ColumnMetadata;
 import gdecid.data.tuple.AbstractTupleSet;
 import gdecid.data.util.RowManager;
-import prefuse.data.Table.ColumnEntry;
+
 
 public class Table extends AbstractTupleSet{
 	
@@ -53,7 +53,6 @@ public class Table extends AbstractTupleSet{
 	
 	public void set(int row, String field, Object val) {
 		int col = getColumnNumber(field);
-		row = getColumnRow(row, col);
 		getColumn(col).set(val, row);
 	}
 

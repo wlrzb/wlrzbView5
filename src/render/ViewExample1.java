@@ -8,12 +8,13 @@ import gdecid.Visualization;
 import gdecid.action.layout.CircleLayout;
 import gdecid.action.layout.Layout;
 import gdecid.data.Graph;
+import gdecid.data.io.GraphMLReader;
 
 
 public class ViewExample1 {
 	public static void main(String[] args) {
 		
-		Graph graph = null;
+		Graph graph = new GraphMLReader().init();
 		
 		Visualization vis = new Visualization();
 		vis.add("graph", graph);

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import gdecid.data.Table;
 
-public class CompositeTupleSet {
+public class CompositeTupleSet extends AbstractTupleSet {
 
 	private Map m_map;
 	private Set m_sets;
