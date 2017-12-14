@@ -20,6 +20,7 @@ public class Table extends AbstractTupleSet{
 	
 	protected RowManager m_rows;
 	
+	
 	// 存储上一次操作的是哪一列数据
 	protected int m_lastCol = -1;
 	

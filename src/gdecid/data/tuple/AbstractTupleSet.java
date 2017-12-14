@@ -14,7 +14,9 @@ public abstract class AbstractTupleSet implements TupleSet{
     
     public void addColumns(Schema schema) {
         for ( int i=0; i<schema.getColumnCount(); ++i ) {
-            addColumn(schema.getColumnName(i), schema.getColumnType(i), schema.getDefault(i));
+            addColumn(schema.getColumnName(i), 
+            		  schema.getColumnType(i), 
+            		  schema.getDefault(i));
         } 
     }
 }

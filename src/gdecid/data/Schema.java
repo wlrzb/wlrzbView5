@@ -44,17 +44,18 @@ public class Schema {
 	}
 
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return m_size;
 	}
 
-	public Object getDefault(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getDefault(int col) {
+		return m_dflts[col];
 	}
 
-	public Class getColumnType(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Class getColumnType(int col) {
+		return m_types[col];
+	}
+	
+	public String getColumnName(int col) {
+		return m_names[col];
 	}
 }
