@@ -4,15 +4,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import gdecid.Visualization;
 import gdecid.visual.tuple.TableNodeItem;
 import gdecid.visual.tuple.TableVisualItem;
 import render.TupleSet;
 
-public class CircleLayout{
+public class CircleLayout extends Layout {
 	private double radius = 200; 
 	
-	public void run(TupleSet ts) {
-               
+	private String m_group;
+	
+    public CircleLayout(String group) {
+        m_group = group;
+    }
+	
+	public void run(Visualization m_vis) {
+        
+		TupleSet ts = m_vis.getGroup(m_group);
+		
         int nn = ts.getNodes().size();
 		
 		Iterator nodes = ts.getNodes().entrySet().iterator();

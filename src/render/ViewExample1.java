@@ -18,6 +18,8 @@ public class ViewExample1 {
 		
 		Visualization vis = new Visualization();
 		vis.add("graph", graph);
+				
+	//	vis.putAction("layout", new CircleLayout("graph"));
 		
         Display d = new Display();
        // d.setSize(800, 600); // set display size
@@ -28,12 +30,9 @@ public class ViewExample1 {
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true); // show the window
-        
-        // 载入node和edge的原始数据
-        TupleSet ts = new TupleSet(); 
-        
-        new CircleLayout().run(ts);;
-        d.add(ts);
+                
+        new CircleLayout(Graph.NODES).run(vis);
+       // d.add(ts);
         //d.repaint();
 	}
 	

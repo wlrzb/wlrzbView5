@@ -29,15 +29,12 @@ public class Table extends AbstractTupleSet{
 		this(0, 0);
 	}
 	
-	public Table(int nrows, int ncols) {
-		this(nrows, ncols, TableTuple.class);
-	}
 	
-	public Table(int nrows, int ncols, Class tupleType) {
+	public Table(int nrows, int ncols) {
 		m_columns = new ArrayList(ncols);
 		m_names   = new ArrayList(ncols);
 		m_rows    = new RowManager(this);
-		m_entries = new HashMap(ncols+5);
+		m_entries = new HashMap(ncols);
 	}
 	
 	public void addColumn(String name, Class type, Object defaultValue) {
@@ -49,8 +46,7 @@ public class Table extends AbstractTupleSet{
 		m_columns.add(col);
 		m_names.add(name);
 		m_lastCol = m_columns.size()-1;
-
-        m_entries.put(name, m_lastCol);
+		m_entries.put(name, m_lastCol);
 	}
 	
 	public void set(int row, String field, Object val) {
@@ -82,9 +78,17 @@ public class Table extends AbstractTupleSet{
 		public ColumnEntry(int col, Column column, ColumnMetadata metadata) {
 			this.colum = col;
 			this.column = column;
-			this.columnMetadata = metadata;
+		//	this.columnMetadata = metadata;
 		}
 		
 	}
+	
+    public int getTupleCount() {
+        return getRowCount();
+    }
+    
+    public int getRowCount() {
+        return m_rows.getRowCount();
+    }
 	
 }

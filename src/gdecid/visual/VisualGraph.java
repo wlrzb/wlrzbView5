@@ -5,9 +5,9 @@ import gdecid.data.Table;
 
 public class VisualGraph extends Graph implements VisualTupleSet {
 
-	public VisualGraph(Table nodes, Table edges, boolean directed) {
-		super(nodes, edges, directed);
-		// TODO Auto-generated constructor stub
-	}
-
+    public VisualGraph(VisualTable nodes, VisualTable edges, boolean directed,
+            String nodeKey, String sourceKey, String targetKey)
+    {
+        super(nodes, edges, directed, nodeKey, sourceKey, targetKey);
+    }
 }

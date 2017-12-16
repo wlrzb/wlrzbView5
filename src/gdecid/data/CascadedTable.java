@@ -10,7 +10,6 @@ public class CascadedTable extends Table {
     protected CascadedTable(Table parent, Predicate rowFilter, 
             ColumnProjection colFilter, Class tupleType)
     {
-        super(0, 0, tupleType);
         m_parent = parent;
     }
 }

@@ -10,6 +10,8 @@ import gdecid.util.GdecidLib;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import gdecid.action.Action;
+import gdecid.activity.ActivityMap;
 import gdecid.data.Graph;
 import gdecid.data.Schema;
 import gdecid.data.Table;
@@ -19,6 +21,8 @@ public class Visualization {
 	
 	private Map m_visual;
 	private Map m_source;
+	
+	private ActivityMap m_actions;
 	
 	public Visualization() {
 		m_visual = new LinkedHashMap();
@@ -45,11 +49,13 @@ public class Visualization {
 		nt = addTable(ngroup, graph.getNodeTable(), filter, nodeSchema);
 		et = addTable(egroup, graph.getEdgeTable(), filter, edgeSchema);
 		
-//		VisualGraph vg = new VisualGraph(nt, et,
-//				graph.getNodeKeyField(),
-//				graph.getEdgeSourceField(),
-//				graph.getEdgeTargetField());
-//		vg.setVisualization(this);
+		VisualGraph vg = new VisualGraph(nt, et,
+				graph.isDirected(),
+				graph.getNodeKeyField(),
+				graph.getEdgeSourceField(),
+				graph.getEdgeTargetField());
+		
+		return vg;
 	}
 	
 	public VisualTable addTable(String group, Table table, Predicate filter, Schema schema) {
@@ -64,6 +70,25 @@ public class Visualization {
 		// private Map m_source
 		m_source.put(group, src);
 	}
+	
+    public TupleSet getGroup(String group) {
+        TupleSet ts = getVisualGroup(group);
+        return ts;
+    }
+    
+    public TupleSet getVisualGroup(String group) {
+        return (TupleSet)m_visual.get(group);
+    }
+	
+	public Action putAction(String name, Action action) {
+		action.setVisualization(this);
+		m_actions.put(name, action);
+		return action;
+	}
+	
+//    public Activity run(String action) {
+//        return m_actions.run(action);
+//    }
 	
 	
 }

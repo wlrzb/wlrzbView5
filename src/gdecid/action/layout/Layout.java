@@ -2,13 +2,18 @@ package gdecid.action.layout;
 
 import java.awt.geom.Point2D;
 
-import prefuse.Display;
+import gdecid.Display;
+import gdecid.action.GroupAction;
 
 public class Layout {
 	
     protected Point2D     m_anchor = null;
     
     protected Point2D     m_tmpa   = new Point2D.Double();
+    
+//    public Layout(String group) {
+//        super(group);
+//    }
     
     public Point2D getLayoutAnchor() {
         if ( m_anchor != null )

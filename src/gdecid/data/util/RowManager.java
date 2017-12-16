@@ -21,4 +21,12 @@ public class RowManager {
 		r = ++m_curid;
 		return r;
 	}
+
+	public int getRowCount() {
+		return 1 + m_curid - m_firstid;
+	}
+	
+    public int getColumnRow(int row, int col) {
+        return row;
+    }
 }

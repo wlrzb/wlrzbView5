@@ -14,5 +14,9 @@ public class CompositeTupleSet extends AbstractTupleSet {
 		m_map.put(name, set);
 		m_sets.add(set);
 	}
+	
+    public TupleSet getSet(String name) {
+        return (TupleSet)m_map.get(name);
+    }
 
 }
