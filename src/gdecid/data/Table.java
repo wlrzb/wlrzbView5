@@ -7,6 +7,7 @@ import gdecid.data.column.Column;
 import gdecid.data.column.ColumnFactory;
 import gdecid.data.column.ColumnMetadata;
 import gdecid.data.tuple.AbstractTupleSet;
+import gdecid.data.tuple.TupleManager;
 import gdecid.data.util.Index;
 import gdecid.data.util.RowManager;
 
@@ -20,6 +21,8 @@ public class Table extends AbstractTupleSet{
 	
 	protected RowManager m_rows;
 	
+	protected TupleManager m_tuples;
+	
 	
 	// 存储上一次操作的是哪一列数据
 	protected int m_lastCol = -1;
@@ -30,11 +33,12 @@ public class Table extends AbstractTupleSet{
 	}
 	
 	
-	public Table(int nrows, int ncols) {
+	public Table(int nrows, int ncols, Class tupleType) {
 		m_columns = new ArrayList(ncols);
 		m_names   = new ArrayList(ncols);
 		m_rows    = new RowManager(this);
 		m_entries = new HashMap(ncols);
+		m_tuples  = new TupleManager(this, null, tupleType);
 	}
 	
 	public void addColumn(String name, Class type, Object defaultValue) {
@@ -90,5 +94,7 @@ public class Table extends AbstractTupleSet{
     public int getRowCount() {
         return m_rows.getRowCount();
     }
+    
+    
 	
 }

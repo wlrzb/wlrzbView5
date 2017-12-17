@@ -7,7 +7,7 @@ import java.util.Map;
 import gdecid.Visualization;
 import gdecid.visual.tuple.TableNodeItem;
 import gdecid.visual.tuple.TableVisualItem;
-import render.TupleSet;
+import gdecid.data.tuple.TupleSet;
 
 public class CircleLayout extends Layout {
 	private double radius = 200; 
@@ -22,7 +22,7 @@ public class CircleLayout extends Layout {
         
 		TupleSet ts = m_vis.getGroup(m_group);
 		
-        int nn = ts.getNodes().size();
+		int nn = ts.getTupleCount();
 		
 		Iterator nodes = ts.getNodes().entrySet().iterator();
         for (int i=0; nodes.hasNext(); i++) {
