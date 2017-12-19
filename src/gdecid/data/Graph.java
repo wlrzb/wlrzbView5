@@ -1,7 +1,12 @@
 package gdecid.data;
 
+import java.util.Iterator;
+
 import gdecid.data.tuple.CompositeTupleSet;
+import gdecid.data.tuple.TupleManager;
+import gdecid.data.tuple.TupleSet;
 import gdecid.visual.VisualItem;
+import prefuse.util.collections.CompositeIterator;
 
 public class Graph extends CompositeTupleSet {
 
@@ -15,6 +20,9 @@ public class Graph extends CompositeTupleSet {
 		= "data.graph.sourceKey";
 	public static final String DEFAULT_TARGET_KEY
 		= "data.graph.targetKey";
+	
+	protected TupleManager m_nodeTuples;
+	protected TupleManager m_edgeTuples;
 	
 	protected String m_nkey;
 	protected String m_skey;
@@ -39,7 +47,11 @@ public class Graph extends CompositeTupleSet {
 		m_nkey = nodeKey;
 		m_skey = sourceKey;
 		m_tkey = targetKey;
+		
+        m_nodeTuples = new TupleManager(nodes, this, TableNode.class);
+        m_edgeTuples = new TupleManager(edges, this, TableEdge.class);
 	}
+	
 	
 //	public VisualItem getSourceNode() {
 //
@@ -73,5 +85,24 @@ public class Graph extends CompositeTupleSet {
 	public boolean isDirected() {
 		return m_directed;
 	}
+	
+    public Iterator tuples() {
+        return new CompositeIterator(edges(), nodes());
+    }  
+	
+	public Iterator edges() {
+		return m_edgeTuples.iterator(edgeRows());
+	}
+	
+	public Iterator edgeRows() {
+		return getEdgeTable().rows();
+	}
+	
+
+	
+	
+	
+	
+	
 
 }

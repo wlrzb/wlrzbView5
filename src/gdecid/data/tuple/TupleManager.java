@@ -11,20 +11,14 @@ public class TupleManager {
     protected Table        m_table;
     protected Class        m_tupleType;
     
-	private TableTuple[] m_tuples;
+	private TableTuple[]   m_tuples;
 	
-    /**
-     * Create a new TupleManager for the given Table.
-     * @param t the data Table to generate Tuples for
-     */
+
     public TupleManager(Table t, Graph g, Class tupleType) {
         init(t, g, tupleType);
     }
     
-    /**
-     * Initialize this TupleManager for use with a given Table.
-     * @param t the data Table to generate Tuples for
-     */
+
     public void init(Table t, Graph g, Class tupleType) {
         if ( m_table != null ) {
             throw new IllegalStateException(
@@ -40,18 +34,26 @@ public class TupleManager {
 		return m_tuples[row];
 	}
 
+    public Iterator iterator(IntIterator rows) {
+        return new TupleManagerIterator(this, rows);
+    }
 	
 	public class TupleManagerIterator implements Iterator {
 		
 		private TupleManager m_tuples;
-		private IntIterator  m_rows;
+		private Iterator  m_rows;
+		
+		public TupleManagerIterator(TupleManager tuples, Iterator rows) {
+			m_tuples = tuples;
+			m_rows   = rows;
+		}
 		
 		public boolean hasNext() {
 			return m_rows.hasNext();
 	    }
 
 	    public Object next() {
-	        return m_tuples.getTuple(m_rows.nextInt());
+	        return m_tuples.getTuple((int)m_rows.next());
 	    }
 	}
 }

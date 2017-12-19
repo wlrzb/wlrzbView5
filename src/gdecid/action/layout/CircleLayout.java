@@ -24,7 +24,7 @@ public class CircleLayout extends Layout {
 		
 		int nn = ts.getTupleCount();
 		
-		Iterator nodes = ts.getNodes().entrySet().iterator();
+		Iterator nodes = ts.tuples();
         for (int i=0; nodes.hasNext(); i++) {
             Map.Entry it = (Map.Entry)nodes.next();
             TableNodeItem tableNodeItem = (TableNodeItem) it.getValue();

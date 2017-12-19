@@ -2,6 +2,7 @@ package gdecid.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import gdecid.data.column.Column;
 import gdecid.data.column.ColumnFactory;
@@ -95,6 +96,8 @@ public class Table extends AbstractTupleSet{
         return m_rows.getRowCount();
     }
     
-    
+    public Iterator rows() {
+    	return m_rows.rows();
+    }
 	
 }

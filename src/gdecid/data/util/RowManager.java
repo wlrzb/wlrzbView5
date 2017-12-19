@@ -1,5 +1,7 @@
 package gdecid.data.util;
 
+import java.util.Iterator;
+
 import gdecid.data.Table;
 
 public class RowManager {
@@ -29,4 +31,31 @@ public class RowManager {
     public int getColumnRow(int row, int col) {
         return row;
     }
+    
+    public Iterator rows(boolean reverse) {
+    	return new RowIterator(reverse);
+    }
+    
+    public class RowIterator implements Iterator {
+    	boolean reverse;
+    	int last = -1, next;
+    	
+    	public RowIterator(boolean reverse) {
+    		this.reverse = reverse;
+    	}
+
+		@Override
+		public boolean hasNext() {
+			return next <= m_curid;
+		}
+
+		@Override
+		public Object next() {
+			last = next;
+			++next;
+			return last;
+		}
+    	
+    }
+    
 }
