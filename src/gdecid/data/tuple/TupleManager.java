@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import gdecid.data.Graph;
 import gdecid.data.Table;
+import gdecid.data.Tuple;
 
 public class TupleManager {
 	
@@ -11,14 +12,20 @@ public class TupleManager {
     protected Table        m_table;
     protected Class        m_tupleType;
     
-	private TableTuple[]   m_tuples;
+	private TableTuple[] m_tuples;
 	
-
+    /**
+     * Create a new TupleManager for the given Table.
+     * @param t the data Table to generate Tuples for
+     */
     public TupleManager(Table t, Graph g, Class tupleType) {
         init(t, g, tupleType);
     }
     
-
+    /**
+     * Initialize this TupleManager for use with a given Table.
+     * @param t the data Table to generate Tuples for
+     */
     public void init(Table t, Graph g, Class tupleType) {
         if ( m_table != null ) {
             throw new IllegalStateException(
@@ -33,27 +40,34 @@ public class TupleManager {
 	public Tuple getTuple(int row) {
 		return m_tuples[row];
 	}
-
-    public Iterator iterator(IntIterator rows) {
-        return new TupleManagerIterator(this, rows);
+	
+    public Iterator iterator() {
+        return new TupleManagerIterator(this);
     }
+
 	
 	public class TupleManagerIterator implements Iterator {
 		
 		private TupleManager m_tuples;
-		private Iterator  m_rows;
+		private int position = 0;
 		
-		public TupleManagerIterator(TupleManager tuples, Iterator rows) {
+		public TupleManagerIterator(TupleManager tuples) {
 			m_tuples = tuples;
-			m_rows   = rows;
 		}
 		
 		public boolean hasNext() {
-			return m_rows.hasNext();
+			if (position > m_table.getRowCount()) {
+				return false;
+			}
+			else {
+				return true;
+			}
 	    }
 
 	    public Object next() {
-	        return m_tuples.getTuple((int)m_rows.next());
+	    	Tuple tuple = m_tuples.getTuple(position);
+	    	position = position + 1;
+	        return tuple; 
 	    }
 	}
 }

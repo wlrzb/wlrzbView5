@@ -91,11 +91,11 @@ public class Graph extends CompositeTupleSet {
     }  
 	
 	public Iterator edges() {
-		return m_edgeTuples.iterator(edgeRows());
+		return m_edgeTuples.iterator();
 	}
 	
-	public Iterator edgeRows() {
-		return getEdgeTable().rows();
+	public Iterator nodes() {
+		return m_nodeTuples.iterator();
 	}
 	
 

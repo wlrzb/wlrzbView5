@@ -24,9 +24,9 @@ public class CircleLayout extends Layout {
 		
 		int nn = ts.getTupleCount();
 		
-		Iterator nodes = ts.tuples();
-        for (int i=0; nodes.hasNext(); i++) {
-            Map.Entry it = (Map.Entry)nodes.next();
+		Iterator items = ts.tuples();
+        for (int i=0; items.hasNext(); i++) {
+            VisualItem n = (VisualItem)items.next();
             TableNodeItem tableNodeItem = (TableNodeItem) it.getValue();
             
             double angle = (2*Math.PI*i) / nn;
