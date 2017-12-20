@@ -68,14 +68,19 @@ public class GraphMLReader {
 	}
 	
 	protected void loadEdgesData() {
+		m_row = m_edges.addRow();
 		m_edges.set(0, "主城市", "北京");
 		m_edges.set(0, "对方城市", "上海");
+		m_row = m_edges.addRow();
 		m_edges.set(1, "主城市", "上海");
 		m_edges.set(1, "对方城市", "广州");
+		m_row = m_edges.addRow();
 		m_edges.set(2, "主城市", "广州");
 		m_edges.set(2, "对方城市", "深圳");
+		m_row = m_edges.addRow();
 		m_edges.set(3, "主城市", "深圳");
 		m_edges.set(3, "对方城市", "香港");
+		m_row = m_edges.addRow();
 		m_edges.set(4, "主城市", "香港");
 		m_edges.set(4, "对方城市", "北京");
 	}

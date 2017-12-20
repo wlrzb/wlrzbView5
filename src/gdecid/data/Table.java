@@ -58,9 +58,17 @@ public class Table extends AbstractTupleSet{
 		int col = getColumnNumber(field);
 		getColumn(col).set(val, row);
 	}
+	
 
+//	private int getColumnNumber(String field) {
+//		return (int) m_entries.get(field);
+//	}
+	
 	private int getColumnNumber(String field) {
-		return (int) m_entries.get(field);
+		if ( m_entries.get(field) == null )
+			return -1;
+		else 
+			return (int) m_entries.get(field);
 	}
 	
     public int getColumnRow(int row, int col) {
