@@ -3,6 +3,7 @@ package gdecid.util.collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+
 public class CompositeIterator implements Iterator {
 
     private Iterator[] m_iters;
@@ -15,7 +16,8 @@ public class CompositeIterator implements Iterator {
     public CompositeIterator(Iterator iter1, Iterator iter2) {
         this(new Iterator[] {iter1, iter2});
     }
-    
+  
+        
     public CompositeIterator(Iterator[] iters) {
         m_iters = iters;
         m_cur = 0;

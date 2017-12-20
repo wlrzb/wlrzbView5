@@ -31,7 +31,6 @@ public class Schema {
 	}
 
 	public Table instantiate() {
-		// TODO Auto-generated method stub
 		return instantiate(0);
 	}
 	

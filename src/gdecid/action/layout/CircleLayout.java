@@ -27,14 +27,11 @@ public class CircleLayout extends Layout {
 		Iterator items = ts.tuples();
         for (int i=0; items.hasNext(); i++) {
             VisualItem n = (VisualItem)items.next();
-            TableNodeItem tableNodeItem = (TableNodeItem) it.getValue();
-            
             double angle = (2*Math.PI*i) / nn;
             double x = Math.cos(angle)*radius + 300;
             double y = Math.sin(angle)*radius + 300;
-            
-            tableNodeItem.setX(x);
-            tableNodeItem.setY(y);
+            setX(n, null, x);
+            setY(n, null, y);
         }
 	}
 }

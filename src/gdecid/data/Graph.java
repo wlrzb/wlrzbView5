@@ -5,8 +5,8 @@ import java.util.Iterator;
 import gdecid.data.tuple.CompositeTupleSet;
 import gdecid.data.tuple.TupleManager;
 import gdecid.data.tuple.TupleSet;
+import gdecid.util.collections.CompositeIterator;
 import gdecid.visual.VisualItem;
-import prefuse.util.collections.CompositeIterator;
 
 public class Graph extends CompositeTupleSet {
 
@@ -48,8 +48,8 @@ public class Graph extends CompositeTupleSet {
 		m_skey = sourceKey;
 		m_tkey = targetKey;
 		
-        m_nodeTuples = new TupleManager(nodes, this, TableNode.class);
-        m_edgeTuples = new TupleManager(edges, this, TableEdge.class);
+        m_nodeTuples = new TupleManager(nodes, this, null);
+        m_edgeTuples = new TupleManager(edges, this, null);
 	}
 	
 	
@@ -85,7 +85,7 @@ public class Graph extends CompositeTupleSet {
 	public boolean isDirected() {
 		return m_directed;
 	}
-	
+	   
     public Iterator tuples() {
         return new CompositeIterator(edges(), nodes());
     }  

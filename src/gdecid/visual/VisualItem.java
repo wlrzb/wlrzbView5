@@ -3,9 +3,10 @@ package gdecid.visual;
 import java.awt.Graphics;
 
 import gdecid.data.Schema;
+import gdecid.data.Tuple;
 import gdecid.util.GdecidLib;
 
-public interface VisualItem {
+public interface VisualItem extends Tuple {
 	public void render(Graphics g);
 	
 	public static final String VALIDATED = "validated";

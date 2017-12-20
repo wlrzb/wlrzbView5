@@ -19,6 +19,8 @@ public class GraphMLReader {
 	
 	private boolean m_directed = false;
 	
+	private int m_row = -1;
+	
 	public Graph init() {
 		addNodeSchema();
 		addEdgeSchema();
@@ -53,11 +55,16 @@ public class GraphMLReader {
 	}
 	
 	protected void loadNodesData() {
-		m_nodes.set(0, "城市", "北京");
-		m_nodes.set(1, "城市", "上海");
-		m_nodes.set(2, "城市", "广州");
-		m_nodes.set(3, "城市", "深圳");
-		m_nodes.set(4, "城市", "香港");
+		m_row = m_nodes.addRow();
+		m_nodes.set(m_row, "城市", "北京");
+		m_row = m_nodes.addRow();
+		m_nodes.set(m_row, "城市", "上海");
+		m_row = m_nodes.addRow();
+		m_nodes.set(m_row, "城市", "广州");
+		m_row = m_nodes.addRow();
+		m_nodes.set(m_row, "城市", "深圳");
+		m_row = m_nodes.addRow();
+		m_nodes.set(m_row, "城市", "香港");
 	}
 	
 	protected void loadEdgesData() {

@@ -34,12 +34,12 @@ public class Table extends AbstractTupleSet{
 	}
 	
 	
-	public Table(int nrows, int ncols, Class tupleType) {
+	public Table(int nrows, int ncols) {
 		m_columns = new ArrayList(ncols);
 		m_names   = new ArrayList(ncols);
 		m_rows    = new RowManager(this);
 		m_entries = new HashMap(ncols);
-		m_tuples  = new TupleManager(this, null, tupleType);
+		m_tuples  = new TupleManager(this, null, null);
 	}
 	
 	public void addColumn(String name, Class type, Object defaultValue) {
@@ -72,6 +72,28 @@ public class Table extends AbstractTupleSet{
 		return (Column)m_columns.get(col);
 	}
 	
+    public int addRow() {
+        int r = m_rows.addRow();
+        updateRowCount();
+               
+        return r;
+    }
+    
+    protected void updateRowCount() {
+        int maxrow = m_rows.getMaximumRow() + 1;
+        
+        // update columns
+        Iterator cols = getColumns();
+        while ( cols.hasNext() ) {
+            Column c = (Column)cols.next();
+            c.setMaximumRow(maxrow);
+        }
+    }
+    
+    // 列迭代器，因为列是ArrayList存储，所以自动有Iterator
+    protected Iterator getColumns() {
+        return m_columns.iterator();
+    }
 
 	
 	protected static class ColumnEntry {
@@ -96,8 +118,8 @@ public class Table extends AbstractTupleSet{
         return m_rows.getRowCount();
     }
     
-    public Iterator rows() {
-    	return m_rows.rows();
+    public Iterator tuples() {
+        return m_tuples.iterator();
     }
-	
+    
 }
