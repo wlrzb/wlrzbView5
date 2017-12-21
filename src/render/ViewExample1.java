@@ -21,17 +21,18 @@ public class ViewExample1 {
 				
 	//	vis.putAction("layout", new CircleLayout("graph"));
 		
-        Display d = new Display();
+//        Display d = new Display();
        // d.setSize(800, 600); // set display size
 		
         JFrame frame = new JFrame("GDECID View Example1");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(d);
+//        frame.add(d);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true); // show the window
                 
-        new CircleLayout(Graph.NODES).run(vis);
+   //     new CircleLayout(Graph.NODES).run(vis);
+        new CircleLayout("graph").run(vis);;
        // d.add(ts);
         //d.repaint();
 	}

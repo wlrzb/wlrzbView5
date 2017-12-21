@@ -12,6 +12,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
 
 	private Map m_map;
 	private Set m_sets;
+	private int m_count; // count of total tuples
 	
 	protected CompositeTupleSet() {
 		this(true);
@@ -20,11 +21,13 @@ public class CompositeTupleSet extends AbstractTupleSet {
 	protected CompositeTupleSet(boolean listen) {
 		m_map  = new LinkedHashMap();
 		m_sets = new HashSet();
+		m_count = 0;
 	}
 	
 	public void addSet(String name, TupleSet set) {
 		m_map.put(name, set);
 		m_sets.add(set);
+		m_count += set.getTupleCount();
 	}
 	
     public TupleSet getSet(String name) {
@@ -33,8 +36,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
 
 	@Override
 	public int getTupleCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return m_count;
 	}
 
 	@Override

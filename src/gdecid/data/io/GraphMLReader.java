@@ -39,7 +39,7 @@ public class GraphMLReader {
 	// 创建“Edges”表结构
 	protected void addEdgeSchema() {
 		m_esch.addColumn("主城市", String.class);
-		m_esch.addColumn("对手城市", String.class);
+		m_esch.addColumn("对方城市", String.class);
 	}
 	
 	// 根据表结构创建数据表

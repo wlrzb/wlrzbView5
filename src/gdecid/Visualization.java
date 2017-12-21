@@ -19,8 +19,9 @@ import gdecid.data.expression.Predicate;
 
 public class Visualization {
 	
-	private Map m_visual;
+	public  Map m_visual;
 	private Map m_source;
+	public  Graph  graphtest;
 	
 	private ActivityMap m_actions;
 	
@@ -28,8 +29,13 @@ public class Visualization {
 		m_visual = new LinkedHashMap();
 		m_source = new LinkedHashMap();
 	}
+	
+	public Table getTable(Graph graph) {
+		return graph.getNodeTable();
+	}
 
 	public VisualTupleSet add(String group, TupleSet data) {
+		graphtest = (Graph)data;
 		return add(group, data, null);
 	}
 	
