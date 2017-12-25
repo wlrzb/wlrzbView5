@@ -33,4 +33,6 @@ public class VisualTable extends CascadedTable implements VisualTupleSet {
         m_group = group;
     }
     
+    
+    
 }

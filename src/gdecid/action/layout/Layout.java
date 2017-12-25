@@ -4,6 +4,8 @@ import java.awt.geom.Point2D;
 
 import gdecid.Display;
 import gdecid.action.GroupAction;
+import gdecid.util.GdecidLib;
+import gdecid.visual.VisualItem;
 
 public class Layout {
 	
@@ -26,5 +28,13 @@ public class Layout {
         d.getInverseTransform().transform(m_tmpa, m_tmpa);
         
         return m_tmpa;
+    }
+    
+    public void setX(VisualItem item, VisualItem referrer, double x) {
+        GdecidLib.setX(item, referrer, x);
+    }
+    
+    public void setY(VisualItem item, VisualItem referrer, double y) {
+        GdecidLib.setY(item, referrer, y);
     }
 }

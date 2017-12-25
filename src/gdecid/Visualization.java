@@ -19,9 +19,8 @@ import gdecid.data.expression.Predicate;
 
 public class Visualization {
 	
-	public  Map m_visual;
+	private Map m_visual;
 	private Map m_source;
-	public  Graph  graphtest;
 	
 	private ActivityMap m_actions;
 	
@@ -35,7 +34,6 @@ public class Visualization {
 	}
 
 	public VisualTupleSet add(String group, TupleSet data) {
-		graphtest = (Graph)data;
 		return add(group, data, null);
 	}
 	
@@ -60,6 +58,11 @@ public class Visualization {
 				graph.getNodeKeyField(),
 				graph.getEdgeSourceField(),
 				graph.getEdgeTargetField());
+		
+        vg.setVisualization(this);
+        vg.setGroup(group);
+     
+        addDataGroup(group, vg, graph);
 		
 		return vg;
 	}

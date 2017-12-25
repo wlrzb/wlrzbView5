@@ -32,7 +32,7 @@ public class ViewExample1 {
         frame.setVisible(true); // show the window
                 
    //     new CircleLayout(Graph.NODES).run(vis);
-        new CircleLayout("graph").run(vis);;
+        new CircleLayout(Graph.NODES).run(vis);;
        // d.add(ts);
         //d.repaint();
 	}

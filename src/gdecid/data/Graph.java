@@ -3,6 +3,8 @@ package gdecid.data;
 import java.util.Iterator;
 
 import gdecid.data.tuple.CompositeTupleSet;
+import gdecid.data.tuple.TableEdge;
+import gdecid.data.tuple.TableNode;
 import gdecid.data.tuple.TupleManager;
 import gdecid.data.tuple.TupleSet;
 import gdecid.util.collections.CompositeIterator;
@@ -48,8 +50,8 @@ public class Graph extends CompositeTupleSet {
 		m_skey = sourceKey;
 		m_tkey = targetKey;
 		
-        m_nodeTuples = new TupleManager(nodes, this, null);
-        m_edgeTuples = new TupleManager(edges, this, null);
+        m_nodeTuples = new TupleManager(nodes, this, TableNode.class);
+        m_edgeTuples = new TupleManager(edges, this, TableEdge.class);
 	}
 	
 	

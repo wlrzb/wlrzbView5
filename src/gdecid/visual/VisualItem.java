@@ -19,4 +19,11 @@ public interface VisualItem extends Tuple {
 	
 	public static final Schema SCHEMA
 		= GdecidLib.getVisualItemSchema();
+	
+	public void setX(double x);
+	public void setY(double y);
+	
+	public double getX();
+	public double getY();
+	
 }

@@ -8,6 +8,7 @@ import gdecid.data.column.Column;
 import gdecid.data.column.ColumnFactory;
 import gdecid.data.column.ColumnMetadata;
 import gdecid.data.tuple.AbstractTupleSet;
+import gdecid.data.tuple.TableTuple;
 import gdecid.data.tuple.TupleManager;
 import gdecid.data.util.Index;
 import gdecid.data.util.RowManager;
@@ -33,13 +34,16 @@ public class Table extends AbstractTupleSet{
 		this(0, 0);
 	}
 	
+    public Table(int nrows, int ncols) {
+        this(nrows, ncols, TableTuple.class);
+    }
 	
-	public Table(int nrows, int ncols) {
+	public Table(int nrows, int ncols, Class tupleType) {
 		m_columns = new ArrayList(ncols);
 		m_names   = new ArrayList(ncols);
 		m_rows    = new RowManager(this);
 		m_entries = new HashMap(ncols);
-		m_tuples  = new TupleManager(this, null, null);
+		m_tuples  = new TupleManager(this, null, tupleType);
 	}
 	
 	public void addColumn(String name, Class type, Object defaultValue) {
@@ -98,10 +102,7 @@ public class Table extends AbstractTupleSet{
         }
     }
     
-    // 列迭代器，因为列是ArrayList存储，所以自动有Iterator
-    protected Iterator getColumns() {
-        return m_columns.iterator();
-    }
+
 
 	
 	protected static class ColumnEntry {
@@ -126,6 +127,12 @@ public class Table extends AbstractTupleSet{
         return m_rows.getRowCount();
     }
     
+    // 列迭代器，因为列是ArrayList存储，所以自动有Iterator
+    protected Iterator getColumns() {
+        return m_columns.iterator();
+    }
+    
+    // 行迭代器
     public Iterator tuples() {
         return m_tuples.iterator();
     }

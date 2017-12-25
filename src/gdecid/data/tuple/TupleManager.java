@@ -5,6 +5,7 @@ import java.util.Iterator;
 import gdecid.data.Graph;
 import gdecid.data.Table;
 import gdecid.data.Tuple;
+import java.util.logging.Logger;
 
 public class TupleManager {
 	
@@ -12,7 +13,7 @@ public class TupleManager {
     protected Table        m_table;
     protected Class        m_tupleType;
     
-	private TableTuple[] m_tuples;
+    private TableTuple[] m_tuples;
 	
     /**
      * Create a new TupleManager for the given Table.
@@ -37,9 +38,33 @@ public class TupleManager {
         m_tuples = null;
     }	
 	
-	public Tuple getTuple(int row) {
-		return m_tuples[row];
-	}
+    public Tuple getTuple(int row) {
+        ensureTupleArray(row);
+        if ( m_tuples[row] == null ) {
+            return (m_tuples[row] = newTuple(row));
+        } else {
+            return m_tuples[row];
+        }
+    }
+    
+    private void ensureTupleArray(int row) {
+        int nrows = Math.max(m_table.getRowCount(), row+1);
+        if ( m_tuples == null ) {
+            m_tuples = new TableTuple[nrows];
+        }
+    }
+    
+    protected TableTuple newTuple(int row) {
+        try {
+            TableTuple t = (TableTuple)m_tupleType.newInstance();
+            t.init(m_table, m_graph, row);
+            return t;
+        } catch ( Exception e ) {
+            Logger.getLogger(getClass().getName()).warning(
+                e.getMessage()+"\n");
+            return null;
+        }
+    }
 	
     public Iterator iterator() {
         return new TupleManagerIterator(this);
