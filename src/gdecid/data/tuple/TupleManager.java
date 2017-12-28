@@ -13,6 +13,7 @@ public class TupleManager {
     protected Table        m_table;
     protected Class        m_tupleType;
     
+    
     private TableTuple[] m_tuples;
 	
     /**
@@ -66,33 +67,28 @@ public class TupleManager {
         }
     }
 	
-    public Iterator iterator() {
-        return new TupleManagerIterator(this);
+    public Iterator iterator(Iterator rows) {
+        return new TupleManagerIterator(this, rows);
     }
 
 	
 	public class TupleManagerIterator implements Iterator {
 		
 		private TupleManager m_tuples;
+		private Iterator m_rows;
 		private int position = 0;
 		
-		public TupleManagerIterator(TupleManager tuples) {
+		public TupleManagerIterator(TupleManager tuples, Iterator rows) {
 			m_tuples = tuples;
+			m_rows = rows;
 		}
 		
 		public boolean hasNext() {
-			if (position > m_table.getRowCount()) {
-				return false;
-			}
-			else {
-				return true;
-			}
+			return m_rows.hasNext();
 	    }
 
 	    public Object next() {
-	    	Tuple tuple = m_tuples.getTuple(position);
-	    	position = position + 1;
-	        return tuple; 
+	    	return m_tuples.getTuple((int)m_rows.next());
 	    }
 	}
 }

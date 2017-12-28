@@ -91,6 +91,10 @@ public class Table extends AbstractTupleSet{
         return r;
     }
     
+    public Iterator rows() {
+    	return m_rows.rows();
+    }
+    
     protected void updateRowCount() {
         int maxrow = m_rows.getMaximumRow() + 1;
         
@@ -134,7 +138,7 @@ public class Table extends AbstractTupleSet{
     
     // ÐÐµü´úÆ÷
     public Iterator tuples() {
-        return m_tuples.iterator();
+        return m_tuples.iterator(m_rows.rows());
     }
     
 }

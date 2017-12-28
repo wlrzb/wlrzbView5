@@ -89,22 +89,10 @@ public class Graph extends CompositeTupleSet {
 	}
 	   
     public Iterator tuples() {
-        return new CompositeIterator(edges(), nodes());
+        return new CompositeIterator(
+        		m_edgeTuples.iterator(getEdgeTable().rows()),
+        		m_nodeTuples.iterator(getNodeTable().rows()));
     }  
-	
-	public Iterator edges() {
-		return m_edgeTuples.iterator();
-	}
-	
-	public Iterator nodes() {
-		return m_nodeTuples.iterator();
-	}
-	
-
-	
-	
-	
-	
 	
 
 }

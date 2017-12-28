@@ -7,6 +7,7 @@ import gdecid.visual.VisualTupleSet;
 import gdecid.data.tuple.TupleSet;
 import gdecid.util.GdecidLib;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -74,9 +75,7 @@ public class Visualization {
 	}
 	
 	protected void addDataGroup(String group, VisualTupleSet ts, TupleSet src) {
-		// private Map m_visual;
 		m_visual.put(group, ts);
-		// private Map m_source
 		m_source.put(group, src);
 	}
 	
@@ -93,6 +92,19 @@ public class Visualization {
 		action.setVisualization(this);
 		m_actions.put(name, action);
 		return action;
+	}
+	
+    public void setRendererFactory(String group) {
+        invalidateAll(group);
+    }
+    
+    public void invalidateAll(String group) {
+        items(group);
+    }
+	
+	public Iterator items(String group) {
+		TupleSet t = getGroup(group);
+		return t.tuples();
 	}
 	
 //    public Activity run(String action) {

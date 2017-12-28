@@ -32,16 +32,16 @@ public class RowManager {
         return row;
     }
     
-    public Iterator rows(boolean reverse) {
-    	return new RowIterator(reverse);
+    public Iterator rows() {
+    	return new RowIterator();
     }
     
     public class RowIterator implements Iterator {
     	boolean reverse;
     	int last = -1, next;
     	
-    	public RowIterator(boolean reverse) {
-    		this.reverse = reverse;
+    	public RowIterator() {
+    		next = ++m_firstid;
     	}
 
 		@Override

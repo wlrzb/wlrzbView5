@@ -5,8 +5,7 @@ import java.util.Iterator;
 import gdecid.data.expression.Predicate;
 import gdecid.data.util.CascadedRowManager;
 import gdecid.data.util.ColumnProjection;
-import prefuse.data.Tuple;
-import prefuse.util.collections.IntIterator;
+
 
 public class CascadedTable extends Table {
 	
@@ -15,9 +14,10 @@ public class CascadedTable extends Table {
     protected CascadedTable(Table parent, Predicate rowFilter, 
             ColumnProjection colFilter, Class tupleType)
     {
+    	super(0, 0, tupleType);
         m_parent = parent;
         m_rows = parent.m_rows;
-       // setRowFilter();
+        setRowFilter();
     }
     
     public void setRowFilter() {
@@ -26,6 +26,9 @@ public class CascadedTable extends Table {
 
     private void filterRows() {
         Iterator ptuples = m_parent.tuples();
+        while ( ptuples.hasNext() ) {
+            Tuple pt = (Tuple)ptuples.next();
+        }
     }
     
 }

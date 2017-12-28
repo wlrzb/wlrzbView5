@@ -18,6 +18,7 @@ public class ViewExample1 {
 		
 		Visualization vis = new Visualization();
 		vis.add("graph", graph);
+		vis.setRendererFactory("graph");
 				
 	//	vis.putAction("layout", new CircleLayout("graph"));
 		
