@@ -30,12 +30,12 @@ public class CircleLayout extends Layout {
 		
 		Iterator items = ts.tuples();
         for (int i=0; items.hasNext(); i++) {
-            Tuple n = (Tuple)items.next();
-//            double angle = (2*Math.PI*i) / nn;
-//            double x = Math.cos(angle)*radius + 300;
-//            double y = Math.sin(angle)*radius + 300;
-//            setX(n, null, x);
-//            setY(n, null, y);
+            VisualItem n = (VisualItem)items.next();
+            double angle = (2*Math.PI*i) / nn;
+            double x = Math.cos(angle)*radius + 300;
+            double y = Math.sin(angle)*radius + 300;
+            setX(n, null, x);
+            setY(n, null, y);
         }
 	}
 }

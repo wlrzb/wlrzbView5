@@ -10,6 +10,7 @@ import gdecid.data.tuple.TupleSet;
 import gdecid.util.collections.CompositeIterator;
 import gdecid.visual.VisualItem;
 
+
 public class Graph extends CompositeTupleSet {
 
 	public static final String NODES
@@ -88,11 +89,19 @@ public class Graph extends CompositeTupleSet {
 		return m_directed;
 	}
 	   
-    public Iterator tuples() {
-        return new CompositeIterator(
-        		m_edgeTuples.iterator(getEdgeTable().rows()),
-        		m_nodeTuples.iterator(getNodeTable().rows()));
-    }  
+//    public Iterator tuples() {
+//        return new CompositeIterator(
+//        		m_edgeTuples.iterator(getEdgeTable().rows()),
+//        		m_nodeTuples.iterator(getNodeTable().rows()));
+//    }  
 	
+    public Iterator tuples() {
+         return m_nodeTuples.iterator(getNodeTable().rows());
+    }
+    
+    public void setTupleManagers(TupleManager ntm, TupleManager etm) {
+        m_nodeTuples = ntm;
+        m_edgeTuples = etm;
+    }
 
 }

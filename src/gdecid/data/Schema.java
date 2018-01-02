@@ -1,11 +1,15 @@
 package gdecid.data;
 
+import java.util.HashMap;
+
 import gdecid.data.Table;
+import gdecid.util.GdecidLib;
 
 public class Schema {
 	private String[] m_names;
 	private Class[]  m_types;
 	private Object[] m_dflts;
+	private HashMap  m_lookup;
 	private int      m_size;
 	
 	public Schema() {
@@ -29,6 +33,18 @@ public class Schema {
 		m_dflts[m_size] = defaultValue;
 		m_size++;
 	}
+	
+    public void addInterpolatedColumn(String name, Class type, Object dflt) {
+        addColumn(name, type, dflt);
+        addColumn(GdecidLib.getStartField(name), type, dflt);
+        addColumn(GdecidLib.getEndField(name), type, dflt);
+    }
+	
+    public void addInterpolatedColumn(String name, Class type) {
+        addInterpolatedColumn(name, type, null);
+    }
+    
+    
 
 	public Table instantiate() {
 		return instantiate(0);
@@ -57,4 +73,10 @@ public class Schema {
 	public String getColumnName(int col) {
 		return m_names[col];
 	}
+	
+    public int getColumnIndex(String field) {
+    	
+        Integer idx = (Integer)m_lookup.get(field);
+        return ( idx==null ? -1 : idx.intValue() );
+    }
 }

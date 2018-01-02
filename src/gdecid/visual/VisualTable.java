@@ -33,6 +33,14 @@ public class VisualTable extends CascadedTable implements VisualTupleSet {
         m_group = group;
     }
     
+    public void setX(int row, double x) {
+        setDouble(row, VisualItem.X, x);
+    }
+
+	public void setStartX(int row, double x) {
+		setDouble(row, VisualItem.STARTX, x);
+	}
+    
     
     
 }

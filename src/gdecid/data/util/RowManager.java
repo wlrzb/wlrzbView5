@@ -41,18 +41,16 @@ public class RowManager {
     	int last = -1, next;
     	
     	public RowIterator() {
-    		next = ++m_firstid;
+    		next = m_firstid;
     	}
 
-		@Override
 		public boolean hasNext() {
 			return next <= m_curid;
 		}
 
-		@Override
 		public Object next() {
 			last = next;
-			++next;
+			next = ++next;
 			return last;
 		}
     	

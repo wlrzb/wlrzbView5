@@ -4,6 +4,9 @@ import gdecid.visual.VisualGraph;
 import gdecid.visual.VisualItem;
 import gdecid.visual.VisualTable;
 import gdecid.visual.VisualTupleSet;
+import gdecid.visual.tuple.TableEdgeItem;
+import gdecid.visual.tuple.TableNodeItem;
+import gdecid.data.tuple.TupleManager;
 import gdecid.data.tuple.TupleSet;
 import gdecid.util.GdecidLib;
 
@@ -64,6 +67,12 @@ public class Visualization {
         vg.setGroup(group);
      
         addDataGroup(group, vg, graph);
+        
+        TupleManager ntm = new TupleManager(nt, vg, TableNodeItem.class);
+        TupleManager etm = new TupleManager(et, vg, TableEdgeItem.class);
+        nt.setTupleManager(ntm);
+        et.setTupleManager(etm);
+        vg.setTupleManagers(ntm, etm);
 		
 		return vg;
 	}
@@ -99,7 +108,10 @@ public class Visualization {
     }
     
     public void invalidateAll(String group) {
-        items(group);
+    	Iterator items = items(group);
+        while ( items.hasNext() ) {
+            VisualItem item = (VisualItem)items.next();
+        }
     }
 	
 	public Iterator items(String group) {

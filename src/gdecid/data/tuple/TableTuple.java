@@ -10,7 +10,7 @@ public class TableTuple implements Tuple{
     protected int m_row;
 	
     protected void init(Table table, Graph m_graph, int row) {
-	m_table = table;
-	m_row = row;
+    	m_table = table;
+    	m_row = row;
     }
 }

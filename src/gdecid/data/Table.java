@@ -42,7 +42,7 @@ public class Table extends AbstractTupleSet{
 		m_columns = new ArrayList(ncols);
 		m_names   = new ArrayList(ncols);
 		m_rows    = new RowManager(this);
-		m_entries = new HashMap(ncols);
+		m_entries = new HashMap(ncols+5);
 		m_tuples  = new TupleManager(this, null, tupleType);
 	}
 	
@@ -62,6 +62,12 @@ public class Table extends AbstractTupleSet{
 		int col = getColumnNumber(field);
 		getColumn(col).set(val, row);
 	}
+	
+    public final void setDouble(int row, String field, double val) {
+        int col = getColumnNumber(field);
+        row = getColumnRow(row, col);
+        getColumn(col).setDouble(val, row);
+    }
 	
 
 //	private int getColumnNumber(String field) {
@@ -106,6 +112,10 @@ public class Table extends AbstractTupleSet{
         }
     }
     
+    
+    public void setTupleManager(TupleManager tm) {
+        m_tuples = tm;
+    }
 
 
 	
@@ -138,7 +148,7 @@ public class Table extends AbstractTupleSet{
     
     // ÐÐµü´úÆ÷
     public Iterator tuples() {
-        return m_tuples.iterator(m_rows.rows());
+        return m_tuples.iterator(rows());
     }
     
 }

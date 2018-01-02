@@ -44,5 +44,6 @@ public class ObjectColumn extends AbstractColumn {
         }
         m_size = nrows;
     }
+
 	
 }
